@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسجيل في الأكاديمية | Toot Ghannan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] },
+                    colors: {
+                        toot: {
+                            green: '#8BC34A', darkgreen: '#558B2F',
+                            blue: '#4FC3F7', darkblue: '#039BE5',
+                            brown: '#8D6E63', light: '#E8F5E9',
+                            text: '#212121'
+                        }
+                    },
+                    borderRadius: { '4xl': '2.5rem' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f0fdf4; overflow-x: hidden; }
+        .glass-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(139, 195, 74, 0.15);
+        }
+        .form-input {
+            background-color: #f9fafb;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #8BC34A;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(139, 195, 74, 0.1);
+            outline: none;
+        }
+        .blob {
+            position: absolute; filter: blur(80px); z-index: -1; opacity: 0.6;
+            animation: move 10s infinite alternate;
+        }
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .custom-table th {
+            background-color: #E8F5E9;
+            color: #558B2F;
+            padding: 15px;
+            font-weight: bold;
+        }
+        .custom-table td {
+            background-color: #fff;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .custom-table tr td:first-child { border-radius: 0 10px 10px 0; }
+        .custom-table tr td:last-child { border-radius: 10px 0 0 10px; }
+
+        /* تنسيق خاص لمربعات الاختيار */
+        .checkbox-group-title {
+            font-size: 0.85rem;
+            color: #558B2F;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #E8F5E9;
+            padding-bottom: 0.25rem;
+            display: block;
+        }
+
+        @keyframes move { from { transform: translate(0,0) scale(1); } to { transform: translate(20px, -20px) scale(1.1); } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div class="blob bg-toot-blue w-96 h-96 rounded-full top-0 right-0"></div>
+    <div class="blob bg-toot-green w-96 h-96 rounded-full bottom-0 left-0 animation-delay-2000"></div>
+
+    <nav class="w-full py-6 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="bi bi-arrow-right-circle-fill text-3xl text-toot-green group-hover:-translate-x-1 transition"></i>
+                <span class="font-bold text-gray-700 group-hover:text-toot-green transition">العودة للرئيسية</span>
+            </a>
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="Logo" class="w-12">
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center py-10 px-4">
+        <div class="container mx-auto max-w-6xl">
+            
+            <div class="text-center mb-10" data-aos="fade-down">
+                <h1 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">انضم لعائلة <span class="text-toot-green">توت غنن</span></h1>
+                <p class="text-gray-600 text-lg">يمكنك تسجيل جميع أبنائك في استمارة واحدة بسهولة.</p>
+            </div>
+
+            <div class="glass-form rounded-4xl p-6 md:p-10" data-aos="fade-up">
+                <form id="registrationForm" onsubmit="event.preventDefault(); submitFinalData();">
+                    
+                    <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100 mb-8">
+                        <h3 class="text-xl font-bold text-toot-blue flex items-center gap-2 mb-4">
+                            <i class="bi bi-person-vcard-fill"></i> بيانات ولي الأمر (المسؤول)
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2 text-sm">اسم ولي الأمر *</label>
+                                <input type="text" id="parentName" required placeholder="الاسم ثلاثي" class="w-full px-5 py-3 rounded-xl form-input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2 text-sm">رقم الهاتف (واتساب) *</label>
+                                <input type="tel" id="parentPhone" required placeholder="01xxxxxxxxx" class="w-full px-5 py-3 rounded-xl form-input text-left" dir="ltr">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-200 mb-8">
+
+                    <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm mb-8">
+                        <h3 class="text-xl font-bold text-toot-green flex items-center gap-2 mb-6">
+                            <i class="bi bi-person-plus-fill"></i> إضافة طالب جديد
+                        </h3>
+
+                        <div class="grid md:grid-cols-4 gap-4 mb-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-bold mb-2 text-xs">اسم الطالب *</label>
+                                <input type="text" id="studentName" placeholder="اسم الطالب" class="w-full px-4 py-2 rounded-xl form-input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2 text-xs">السن *</label>
+                                <input type="number" id="studentAge" placeholder="العمر" class="w-full px-4 py-2 rounded-xl form-input">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2 text-xs">المرحلة الدراسية *</label>
+                                <select id="studyStage" class="w-full px-4 py-2 rounded-xl form-input cursor-pointer">
+                                    <option value="">-- اختر --</option>
+                                    <option value="kindergarten">رياض الأطفال (Kindergarten)</option>
+                                    <option value="primary">الابتدائية (Primary)</option>
+                                    <option value="preparatory">الإعدادية (Preparatory)</option>
+                                    <option value="secondary">الثانوية (Secondary)</option>
+                                    <option value="university">الجامعية (University)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-3 text-sm">اختر البرامج والأنشطة المطلوبة:</label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                
+                                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                                    <span class="checkbox-group-title"><i class="bi bi-stars"></i> برامج وتنمية مهارات</span>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="kindergarten_prog" class="activity-check accent-toot-green"> باقة رياض الأطفال الكاملة</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="programming" class="activity-check accent-toot-green"> برمجة وروبوتكس</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="ucmath" class="activity-check accent-toot-green"> يوسي ماس (UCMAS)</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="english" class="activity-check accent-toot-green"> لغة إنجليزية (Phonics/Conv)</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="arabic" class="activity-check accent-toot-green"> لغة عربية (تأسيس/نحو)</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="quran" class="activity-check accent-toot-green"> تحفيظ قرآن</label>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                                    <span class="checkbox-group-title"><i class="bi bi-trophy"></i> أكاديمية الرياضة</span>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="kickboxing" class="activity-check accent-toot-green"> كيك بوكسينج</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="karate" class="activity-check accent-toot-green"> كاراتيه</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="gymnastics" class="activity-check accent-toot-green"> جمباز</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="football" class="activity-check accent-toot-green"> كرة قدم</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="swimming" class="activity-check accent-toot-green"> سباحة</label>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                                    <span class="checkbox-group-title"><i class="bi bi-book"></i> الدعم المدرسي (دروس)</span>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="math" class="activity-check accent-toot-green"> Math / رياضيات</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="science" class="activity-check accent-toot-green"> Science / علوم</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="english_curr" class="activity-check accent-toot-green"> English (مناهج مدرسية)</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="social" class="activity-check accent-toot-green"> دراسات اجتماعية</label>
+                                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" value="ict" class="activity-check accent-toot-green"> ICT / حاسب آلي</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="addStudentToTable()" class="w-full border-2 border-dashed border-toot-green text-toot-darkgreen bg-green-50 hover:bg-green-100 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
+                            <i class="bi bi-plus-circle-fill"></i> إضافة الطالب للقائمة
+                        </button>
+                    </div>
+
+                    <div class="mb-8 overflow-x-auto">
+                        <h4 class="font-bold text-gray-700 mb-3">قائمة الطلاب المراد تسجيلهم:</h4>
+                        <table class="custom-table min-w-full text-sm">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم الطالب</th>
+                                    <th>السن</th>
+                                    <th>المرحلة</th>
+                                    <th>الأنشطة المختارة</th>
+                                    <th>حذف</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody">
+                                <tr id="emptyRow">
+                                    <td colspan="6" class="text-center text-gray-400 py-6">لم يتم إضافة طلاب بعد</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2 text-sm">ملاحظات عامة</label>
+                        <textarea id="generalNotes" rows="2" placeholder="أي ملاحظات إضافية..." class="w-full px-5 py-4 rounded-xl form-input"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-toot-green to-toot-blue hover:from-toot-darkgreen hover:to-toot-darkblue text-white font-bold py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition duration-300 text-lg flex items-center justify-center gap-3">
+                        <i class="bi bi-rocket-takeoff-fill"></i> تأكيد وإرسال الطلب
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-6 text-gray-500 text-sm">
+        &copy; 2025 أكاديمية توت غنن
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        let studentsList = [];
+
+        const stageTranslations = {
+            'kindergarten': 'رياض الأطفال',
+            'primary': 'الابتدائية',
+            'preparatory': 'الإعدادية',
+            'secondary': 'الثانوية',
+            'university': 'الجامعية'
+        };
+
+        function addStudentToTable() {
+            const name = document.getElementById('studentName').value.trim();
+            const age = document.getElementById('studentAge').value;
+            const stage = document.getElementById('studyStage').value;
+            
+            // جلب الأنشطة المختارة
+            const checkboxes = document.querySelectorAll('.activity-check:checked');
+            let activities = [];
+            checkboxes.forEach((checkbox) => {
+                // نأخذ النص الموجود بجانب الشيك بوكس (textContent للأب)
+                activities.push(checkbox.parentElement.innerText.trim());
+            });
+            
+            if (!name || !age || !stage) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'بيانات ناقصة',
+                    text: 'يرجى إدخال اسم الطالب، السن، والمرحلة الدراسية.',
+                    confirmButtonText: 'حسناً'
+                });
+                return;
+            }
+
+            if (activities.length === 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'تنبيه',
+                    text: 'لم تقم باختيار أي نشاط لهذا الطالب.',
+                });
+                // نسمح بالإضافة حتى لو لم يختار نشاط (قد يكون تسجيل مبدئي)
+            }
+
+            const studentObj = {
+                id: Date.now(),
+                name: name,
+                age: age,
+                stage: stage,
+                activities: activities
+            };
+            
+            studentsList.push(studentObj);
+            renderTable();
+            
+            // تنظيف الحقول
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentAge').value = '';
+            document.getElementById('studyStage').value = '';
+            document.querySelectorAll('.activity-check').forEach(cb => cb.checked = false);
+            
+            const Toast = Swal.mixin({
+                toast: true, position: 'top-start', showConfirmButton: false, timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => { toast.onmouseenter = Swal.stopTimer; toast.onmouseleave = Swal.resumeTimer; }
+            });
+            Toast.fire({ icon: 'success', title: 'تم إضافة الطالب' });
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('studentsTableBody');
+            tbody.innerHTML = '';
+
+            if (studentsList.length === 0) {
+                tbody.innerHTML = '<tr id="emptyRow"><td colspan="6" class="text-center text-gray-400 py-6">لم يتم إضافة طلاب بعد</td></tr>';
+                return;
+            }
+
+            studentsList.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="text-center font-bold text-toot-green">${index + 1}</td>
+                    <td class="font-bold">${student.name}</td>
+                    <td class="text-center">${student.age}</td>
+                    <td class="text-center">${stageTranslations[student.stage]}</td>
+                    <td class="text-center">
+                        ${student.activities.length > 0 
+                            ? student.activities.map(act => `<span class="inline-block bg-blue-50 text-blue-800 border border-blue-100 text-xs px-2 py-1 rounded-md m-1">${act}</span>`).join('') 
+                            : '<span class="text-gray-400 text-xs">--</span>'}
+                    </td>
+                    <td class="text-center">
+                        <button onclick="removeStudent(${student.id})" class="text-red-500 hover:text-red-700 hover:bg-red-50 w-8 h-8 rounded-full transition">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function removeStudent(id) {
+            studentsList = studentsList.filter(s => s.id !== id);
+            renderTable();
+        }
+
+        async function submitFinalData() {
+            const parentName = document.getElementById('parentName').value.trim();
+            const parentPhone = document.getElementById('parentPhone').value.trim();
+            const notes = document.getElementById('generalNotes').value.trim();
+
+            if (!parentName || !parentPhone) {
+                Swal.fire({ icon: 'error', title: 'تنبيه', text: 'يرجى إدخال بيانات ولي الأمر كاملة.' });
+                return;
+            }
+
+            if (studentsList.length === 0) {
+                Swal.fire({ icon: 'warning', title: 'القائمة فارغة', text: 'يرجى إضافة طالب واحد على الأقل.' });
+                return;
+            }
+
+            const payload = {
+                parent: { name: parentName, phone: parentPhone, notes: notes },
+                students: studentsList
+            };
+
+            Swal.fire({
+                title: 'جاري الإرسال...',
+                text: 'يرجى الانتظار قليلاً',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم إرسال الطلب بنجاح!',
+                        text: 'رقم الطلب: ' + result.requestId + ' - سيتم التواصل معكم قريباً.',
+                        confirmButtonColor: '#8BC34A'
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    throw new Error(result.message || 'حدث خطأ غير معروف');
+                }
+
+            } catch (error) {
+                console.error(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'فشل الإرسال',
+                    text: 'تأكد من الاتصال بالإنترنت أو حاول مرة أخرى لاحقاً.'
+                });
+            }
+        }
+    </script>
+</body>
+</html>

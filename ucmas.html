@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج UCMAS | أكاديمية توت غنن</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        toot: {
+                            text: '#212121',
+                            ucmas: '#F59E0B',     // اللون الأساسي (كهرماني/ذهبي)
+                            ucmas_light: '#FFFBEB', 
+                            ucmas_dark: '#B45309',
+                            blue: '#4FC3F7',      // لون ثانوي للتوازن
+                        }
+                    },
+                    borderRadius: {
+                        '4xl': '2.5rem',
+                        '5xl': '3.5rem',
+                        'blob': '60% 40% 30% 70% / 60% 30% 70% 40%',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .font-english {
+    font-family: 'Outfit', sans-serif;
+}
+/* وطبقه على الأرقام وكلمات مثل Programming, UCMAS */
+        body {
+            background-color: #FAFAFA;
+            color: #212121;
+            overflow-x: hidden;
+        }
+        
+       /* استبدل كلاس .glass-card القديم بهذا */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7); /* شفافية أكثر */
+    backdrop-filter: blur(20px) saturate(180%); /* تمويه أعلى وتشبع للألوان خلفه */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* حدود أخف */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* ظل ناعم جداً */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* ظل أعمق عند التحويم */
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #212121;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 6px;
+            background: linear-gradient(90deg, #F59E0B 0%, #FCD34D 100%);
+            border-radius: 9999px;
+        }
+
+        .brain-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: #FFFBEB;
+            color: #F59E0B;
+            transition: transform 0.3s;
+        }
+        .glass-card:hover .brain-icon {
+            transform: rotate(10deg) scale(1.1);
+            background: #F59E0B;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 top-0 bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="Logo" class="w-12 h-auto">
+                <span class="text-xl font-black text-toot-text hidden md:block">برنامج UCMAS</span>
+            </div>
+            <a href="index.html" class="flex items-center gap-2 text-gray-600 hover:text-toot-ucmas font-bold transition">
+                <i class="bi bi-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+   <section class="relative w-full min-h-[600px] flex flex-col items-center justify-center bg-gradient-to-b from-[#FFFBF5] to-white overflow-hidden font-cairo" dir="rtl">
+
+    <div class="absolute top-16 left-16 opacity-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#6B240C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V7"/>
+            <path d="M19 21V7"/>
+            <path d="M5 7h14"/>
+            <circle cx="8" cy="14" r="1"/>
+            <circle cx="12" cy="14" r="1"/>
+            <circle cx="16" cy="14" r="1"/>
+            <circle cx="8" cy="10" r="1"/>
+            <circle cx="12" cy="10" r="1"/>
+            <circle cx="16" cy="10" r="1"/>
+        </svg>
+    </div>
+    <div class="absolute bottom-10 right-10 opacity-10 transform rotate-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#E85C0D" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.663 17h4.673M12 3a7 7 0 0 1 7 7c0 2.386-1.197 4.459-3 5.74L15 17H9l-1-1.26A7 7 0 0 1 12 3z"></path>
+        </svg>
+    </div>
+
+    <div class="z-10 container mx-auto px-4 text-center">
+        
+        <span class="inline-block py-2 px-4 rounded-full bg-[#FFE8D6] text-[#6B240C] text-sm font-bold mb-6 shadow-sm">
+            🧠 تنمية المهارات العقلية
+        </span>
+
+        <h1 class="text-5xl md:text-6xl font-extrabold text-[#1A1A1A] mb-2">
+            UCMAS Academy
+        </h1>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-[#E85C0D] mb-6">
+            أطلق العنان لعبقرية طفلك الكامنة
+        </h2>
+
+        <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            البرنامج العالمي الرائد لتطوير القدرات الذهنية للأطفال. نساعد طفلك على تعزيز التركيز، الذاكرة التصويرية، وسرعة البديهة من خلال الحساب الذهني.
+        </p>
+
+       <a href="https://admin.tootghannan.site/register.html" class="bg-[#6B240C] text-white text-lg font-bold py-4 px-10 rounded-2xl hover:bg-[#501b09] transition-all duration-300 shadow-lg flex items-center justify-center mx-auto gap-2 w-fit">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+    </svg>
+    سجل في البرنامج
+</a>
+    </div>
+</section>
+
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-4xl shadow-xl p-8 lg:p-12 border-r-8 border-toot-ucmas" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-black text-gray-800 mb-4">ما هو UCMAS؟</h2>
+                        <p class="text-lg text-gray-600 leading-loose">
+                            هو برنامج تطوير عقلي عالمي للأطفال من سن 4 إلى 12 سنة. يعتمد على استخدام أداة **العداد (Abacus)** في البداية، ثم ينتقل الطفل تدريجياً إلى التخيل، حيث يقوم بإجراء عمليات حسابية معقدة وكبيرة في ثوانٍ معدودة دون استخدام الآلة الحاسبة أو الورقة والقلم، مما يحفز خلايا المخ وينشط الفصين الأيمن والأيسر.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3127/3127211.png" alt="Abacus Icon" class="w-40 h-40 mx-auto opacity-80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="py-20 bg-toot-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="section-title mx-auto">المهارات المكتسبة</div>
+                <p class="text-gray-600 mt-4">التأثير الحقيقي لليوسي ماس يمتد لكل المواد الدراسية</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in">
+                    <div class="brain-icon mx-auto"><i class="bi bi-lightning-charge-fill"></i></div>
+                    <h3 class="text-xl font-bold mb-2">التركيز والانتباه</h3>
+                    <p class="text-gray-600 text-sm">يعالج مشكلة التشتت والنسيان، حيث يتدرب الطفل على التركيز في الأرقام والعمليات المتتالية.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="brain-icon mx-auto"><i class="bi bi-camera-fill"></i></div>
+                    <h3 class="text-xl font-bold mb-2">الذاكرة التصويرية</h3>
+                    <p class="text-gray-600 text-sm">تخيل العداد وحركة الخرزات ينمي الذاكرة البصرية بشكل مذهل، مما يساعد في الحفظ الدراسي.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="brain-icon mx-auto"><i class="bi bi-stopwatch-fill"></i></div>
+                    <h3 class="text-xl font-bold mb-2">السرعة والدقة</h3>
+                    <p class="text-gray-600 text-sm">القدرة على اتخاذ القرارات الصحيحة بسرعة، وحل المسائل المعقدة في وقت قياسي.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="brain-icon mx-auto"><i class="bi bi-ear-fill"></i></div>
+                    <h3 class="text-xl font-bold mb-2">مهارة الاستماع</h3>
+                    <p class="text-gray-600 text-sm">يتدرب الطفل على الاستماع للأرقام بسرعة وتحليلها فورياً، مما يحسن استيعابه في الفصل.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="brain-icon mx-auto"><i class="bi bi-stars"></i></div>
+                    <h3 class="text-xl font-bold mb-2">الثقة بالنفس</h3>
+                    <p class="text-gray-600 text-sm">التفوق في الحساب يعطي الطفل شعوراً بالإنجاز والتميز وسط أقرانه.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="brain-icon mx-auto"><i class="bi bi-infinity"></i></div>
+                    <h3 class="text-xl font-bold mb-2">الإبداع والتخيل</h3>
+                    <p class="text-gray-600 text-sm">تنشيط الفص الأيمن من المخ المسؤول عن الإبداع من خلال عمليات التخيل المستمرة.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="section-title mx-auto">رحلة التعلم</div>
+            </div>
+
+            <div class="relative border-l-4 border-yellow-200 mr-4 md:mx-auto md:w-2/3 space-y-12">
+                
+                <div class="relative pl-8" data-aos="fade-left">
+                    <div class="absolute -right-3 top-0 w-6 h-6 bg-toot-ucmas rounded-full border-4 border-white shadow"></div>
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition">
+                        <h4 class="font-bold text-xl text-toot-ucmas mb-2">المرحلة التأسيسية (Foundation)</h4>
+                        <p class="text-gray-600 text-sm">التعرف على العداد (Abacus)، تعلم تمثيل الأرقام، والعمليات الحسابية البسيطة (جمع وطرح) باستخدام الأصابع والخرز.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute -right-3 top-0 w-6 h-6 bg-toot-ucmas rounded-full border-4 border-white shadow"></div>
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition">
+                        <h4 class="font-bold text-xl text-toot-ucmas mb-2">مرحلة التخيل (Visualization)</h4>
+                        <p class="text-gray-600 text-sm">الاستغناء تدريجياً عن العداد المادي، والبدء في تخيل العداد في الذهن وإجراء العمليات بسرعة أكبر.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="200">
+                    <div class="absolute -right-3 top-0 w-6 h-6 bg-toot-ucmas rounded-full border-4 border-white shadow"></div>
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition">
+                        <h4 class="font-bold text-xl text-toot-ucmas mb-2">المستويات المتقدمة (Advanced)</h4>
+                        <p class="text-gray-600 text-sm">التعامل مع أرقام كبيرة، الضرب والقسمة، الكسور العشرية، والوصول لسرعات خيالية في الحساب.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-900 text-white rounded-t-[4rem] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <i class="bi bi-trophy-fill text-6xl text-yellow-400 mb-6 block animate-bounce"></i>
+            <h2 class="text-4xl font-black mb-6">المسابقات والبطولات</h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                نؤهل طلابنا للمشاركة في المسابقات المحلية والجمهورية، مما يعزز روح المنافسة الشريفة ويكسر حاجز الخوف والثقة بالنفس. أطفال UCMAS هم أبطال المستقبل!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur">
+                    <span class="block font-bold text-yellow-400 text-xl">مسابقات محلية</span>
+                </div>
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur">
+                    <span class="block font-bold text-yellow-400 text-xl">مسابقات الجمهورية</span>
+                </div>
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur">
+                    <span class="block font-bold text-yellow-400 text-xl">اختبارات مستوى دورية</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-4xl p-10 shadow-lg" data-aos="zoom-in">
+                <h2 class="text-3xl font-black text-gray-800 mb-4">هل طفلك مستعد للتحدي؟</h2>
+                <p class="text-gray-600 mb-8">ابدأ رحلة العبقرية مع توت غنن. الأماكن محدودة في المجموعات الجديدة.</p>
+                <div class="flex justify-center gap-4">
+                    <a href="https://wa.me/201010676035" class="bg-toot-ucmas text-white px-8 py-4 rounded-2xl font-bold hover:bg-yellow-600 transition flex items-center gap-2">
+                        <i class="bi bi-whatsapp"></i> احجز الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 text-sm">جميع الحقوق محفوظة © 2025 أكاديمية توت غنن</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

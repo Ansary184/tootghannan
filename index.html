@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية توت غنن | Toot Ghannan Academy</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8BC34A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        toot: {
+                            green: '#8BC34A',     
+                            darkgreen: '#558B2F', 
+                            blue: '#4FC3F7',      
+                            darkblue: '#039BE5',  
+                            brown: '#8D6E63',     
+                            light: '#E8F5E9',     
+                            text: '#212121',      
+                            softgrey: '#F5F5F5',  
+                        }
+                    },
+                    borderRadius: {
+                        '4xl': '2.5rem',
+                        '5xl': '3.5rem',
+                        'bubble': '60% 40% 70% 30% / 60% 50% 50% 40%',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .font-english {
+    font-family: 'Outfit', sans-serif;
+}
+/* وطبقه على الأرقام وكلمات مثل Programming, UCMAS */
+        body {
+            background-color: #F5F5F5;
+            color: #212121;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+      /* استبدل كلاس .glass-card القديم بهذا */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7); /* شفافية أكثر */
+    backdrop-filter: blur(20px) saturate(180%); /* تمويه أعلى وتشبع للألوان خلفه */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* حدود أخف */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* ظل ناعم جداً */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* ظل أعمق عند التحويم */
+    border-color: rgba(255, 255, 255, 0.8);
+}
+        /* تنسيق صور المدربين */
+        .trainer-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover .trainer-img-container {
+            transform: scale(1.1);
+            border-color: #8BC34A;
+        }
+
+        .floating-bubble {
+            position: absolute;
+            background: radial-gradient(circle, var(--tw-gradient-stops));
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float-bubbles 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float-bubbles {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-20px) translateX(30px) scale(1.1); opacity: 0.4; }
+            50% { transform: translateY(0px) translateX(60px) scale(1.2); opacity: 0.5; }
+            75% { transform: translateY(20px) translateX(30px) scale(1.1); opacity: 0.4; }
+            100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+        }
+
+        .bubble-1 { top: 5%; left: 10%; width: 300px; height: 300px; --tw-gradient-from: #8BC34A; --tw-gradient-to: #4FC3F7; animation-delay: 0s; }
+        .bubble-2 { bottom: 10%; right: 5%; width: 400px; height: 400px; --tw-gradient-from: #4FC3F7; --tw-gradient-to: #8BC34A; animation-delay: 5s; }
+        .bubble-3 { top: 40%; left: 40%; width: 200px; height: 200px; --tw-gradient-from: #8D6E63; --tw-gradient-to: #8BC34A; animation-delay: 10s; }
+
+        .btn-main {
+            background: linear-gradient(135deg, #8BC34A 0%, #4FC3F7 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(139, 195, 74, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 195, 247, 0.5);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #212121;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -10px;
+            width: 70px;
+            height: 6px;
+            background: linear-gradient(90deg, #8BC34A 0%, #4FC3F7 100%);
+            border-radius: 9999px;
+        }
+
+        /* تنسيق أيقونات التواصل الاجتماعي */
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #555;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .social-btn:hover {
+            background: #8BC34A;
+            color: white;
+            transform: translateY(-3px);
+        }
+        /* حركة الشعار */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="floating-bubble bubble-1"></div>
+    <div class="floating-bubble bubble-2"></div>
+    <div class="floating-bubble bubble-3"></div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-xl border-b border-white/40 shadow-sm" id="navbar">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="Toot Ghannan Logo" class="w-16 h-auto">
+                <span class="text-2xl font-black text-toot-text tracking-tight hidden md:block">توت غنن</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 font-bold text-gray-700 text-base">
+                <a href="#home" class="hover:text-toot-green transition py-2">الرئيسية</a>
+                <a href="#about" class="hover:text-toot-blue transition py-2">عن الأكاديمية</a>
+                <a href="#kindergarten" class="hover:text-toot-green transition py-2">الروضة</a>
+                <a href="#activities" class="hover:text-toot-blue transition py-2">الأنشطة</a>
+                <a href="#team" class="hover:text-toot-brown transition py-2">المدربين</a>
+                <a href="#contact" class="hover:text-toot-green transition py-2">تواصل معنا</a>
+            </div>
+
+            <a href="https://student.tootghannan.site/" class="hidden md:inline-flex btn-main transform hover:scale-105">
+                 تسجيل دخول  🚀
+            </a>
+            <button class="md:hidden text-2xl text-toot-text">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header id="home" class="relative pt-40 pb-28 text-center bg-gradient-to-br from-toot-light to-white overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <img src="logo.png" alt="Toot Ghannan Logo" class="w-32 h-auto mx-auto mb-8 shadow-xl rounded-full p-2 bg-white transform rotate-3">
+                <h1 class="text-6xl lg:text-7xl font-black text-toot-text mb-6 leading-tight">
+                    أكاديمية <span class="text-toot-green">توت غنن</span><br>
+                    <span class="text-toot-blue">حيث يبدأ الإبداع والنمو.</span>
+                </h1>
+                <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    من بيبي كلاس إلى احتراف البرمجة، نقدم لأطفالكم رحلة تعليمية شاملة تجمع بين التميز الأكاديمي، القيم الأصيلة، واللياقة البدنية في بيئة ملهمة.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://admin.tootghannan.site/register.html" class="btn-main flex items-center gap-2 transform hover:scale-105">
+                        <i class="bi bi-mortarboard-fill text-xl"></i>  سجل الان
+                    </a>
+                    <a href="#activities" class="bg-white text-toot-text px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition shadow-lg border border-gray-200 flex items-center gap-2 transform hover:scale-105">
+                        <i class="bi bi-backpack4-fill text-toot-green text-xl"></i> اكتشف برامجنا
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="section-title text-right">عن أكاديمية توت غنن</div>
+                    <p class="text-lg text-gray-700 mb-6">
+                        نحن لسنا مجرد مكان للتعلم، بل مجتمع متكامل يهدف إلى بناء شخصية الطفل من جميع الجوانب: العقلية، الجسدية، والروحية. نؤمن بأن التعليم يجب أن يكون تجربة ممتعة ومحفزة على الإبداع والاكتشاف.
+                    </p>
+                    <ul class="space-y-3 text-lg text-gray-700">
+                        <li class="flex items-center gap-3"><i class="bi bi-check-circle-fill text-toot-green text-2xl"></i> بيئة تعليمية آمنة ومحفزة.</li>
+                        <li class="flex items-center gap-3"><i class="bi bi-check-circle-fill text-toot-green text-2xl"></i> منهج متكامل يراعي الفروق الفردية.</li>
+                        <li class="flex items-center gap-3"><i class="bi bi-check-circle-fill text-toot-green text-2xl"></i> مدربون متخصصون في كل المجالات.</li>
+                    </ul>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Kids Learning" class="w-full h-96 object-cover rounded-5xl shadow-2xl border-8 border-white transform rotate-3 hover:rotate-0 transition duration-500">
+                    <div class="absolute bottom-4 left-4 bg-toot-blue text-white px-6 py-3 rounded-full shadow-lg text-sm font-bold animate-pulse">
+                        أكثر من 10 أنشطة مختلفة!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kindergarten" class="py-20 bg-toot-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="section-title mx-auto">قسم رياض الأطفال</div>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto mt-4">
+                    مرحلة تأسيسية لكل طفل، نزرع فيها بذور المعرفة، القيم، والمرح في بيئة محبة وداعمة.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-4xl text-center border-t-8 border-toot-green transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 mx-auto bg-toot-green/10 text-toot-green rounded-full flex items-center justify-center text-5xl mb-6">
+                        <i class="bi bi-baby-fill"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-toot-text">Baby Class</h3>
+                    <p class="text-gray-600">رعاية شاملة وأنشطة حسية لتنمية مهارات الرضع في بيئة آمنة.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center border-t-8 border-toot-blue transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 mx-auto bg-toot-blue/10 text-toot-blue rounded-full flex items-center justify-center text-5xl mb-6">
+                        <i class="bi bi-1-circle-fill"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-toot-text">مرحلة KG1</h3>
+                    <p class="text-gray-600">بداية التفاعل الاجتماعي والتعلم المرح مع التركيز على الأساسيات.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl text-center border-t-8 border-toot-brown transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 mx-auto bg-toot-brown/10 text-toot-brown rounded-full flex items-center justify-center text-5xl mb-6">
+                        <i class="bi bi-2-circle-fill"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-toot-text">مرحلة KG2</h3>
+                    <p class="text-gray-600">تأهيل متكامل للمدرسة، مهارات القراءة، الكتابة، والحساب.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section id="activities" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="section-title mx-auto">برامجنا وأنشطتنا المتميزة</div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mt-4">
+                    اكتشف مجموعة واسعة من الأنشطة التعليمية، الرياضية، والثقافية التي تلبي شغف أطفالكم.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-4xl border-l-8 border-toot-blue flex flex-col items-start" data-aos="zoom-in">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-toot-blue/10 text-toot-blue rounded-full flex items-center justify-center text-3xl"><i class="bi bi-code-slash"></i></div>
+                        <h3 class="font-bold text-2xl text-toot-text">البرمجة & ICT</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">تعليم مفاهيم البرمجة للأطفال، الروبوتكس، وتطوير المهارات الرقمية الأساسية لمستقبلهم.</p>
+                    <a href="programming-ict.html" class="mt-auto inline-flex items-center gap-2 text-toot-blue font-bold hover:gap-3 transition-all group">
+                        عرض التفاصيل والمناهج <i class="bi bi-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl border-l-8 border-toot-green flex flex-col items-start" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-toot-green/10 text-toot-green rounded-full flex items-center justify-center text-3xl"><i class="bi bi-calculator"></i></div>
+                        <h3 class="font-bold text-2xl text-toot-text">UC Math</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">برنامج عالمي لتنمية الحساب الذهني، سرعة البديهة، والتركيز بتقنيات مبتكرة وممتعة.</p>
+                    <a href="ucmas.html" class="mt-auto inline-flex items-center gap-2 text-toot-green font-bold hover:gap-3 transition-all group">
+                        عرض التفاصيل والمستويات <i class="bi bi-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl border-l-8 border-toot-brown flex flex-col items-start" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-toot-brown/10 text-toot-brown rounded-full flex items-center justify-center text-3xl"><i class="bi bi-book"></i></div>
+                        <h3 class="font-bold text-2xl text-toot-text">اللغة العربية</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">تأسيس قوي في القراءة والكتابة (نور البيان)، قواعد النحو المبسطة، وتحسين الخط العربي.</p>
+                    <a href="arabic.html" class="mt-auto inline-flex items-center gap-2 text-toot-brown font-bold hover:gap-3 transition-all group">
+                        عرض التفاصيل <i class="bi bi-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                 <div class="glass-card p-8 rounded-4xl border-l-8 border-red-400 flex flex-col items-start" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-red-50 text-red-400 rounded-full flex items-center justify-center text-3xl"><i class="bi bi-explicit"></i></div>
+                        <h3 class="font-bold text-2xl text-toot-text">اللغة الإنجليزية</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">تأسيس بنظام Jolly Phonics، محادثة (Conversation)، وتنمية مهارات الاستماع والتحدث بطلاقة.</p>
+                    <a href="english.html" class="mt-auto inline-flex items-center gap-2 text-red-400 font-bold hover:gap-3 transition-all group">
+                        عرض التفاصيل <i class="bi bi-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                <div class="glass-card p-8 rounded-4xl border-l-8 border-toot-blue flex flex-col items-start" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-toot-blue/10 text-toot-blue rounded-full flex items-center justify-center text-3xl"><i class="bi bi-backpack2"></i></div>
+                        <h3 class="font-bold text-2xl text-toot-text">الدعم الدراسي</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">دروس تقوية للمناهج المدرسية: رياضيات، علوم، دراسات، وتكنولوجيا المعلومات لجميع المراحل.</p>
+                    <a href="school-support.html" class="mt-auto inline-flex items-center gap-2 text-toot-blue font-bold hover:gap-3 transition-all group">
+                        عرض المواد المتاحة <i class="bi bi-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                <div class="bg-gradient-to-br from-toot-darkgreen to-toot-green text-white p-8 rounded-4xl shadow-lg transform hover:scale-105 flex flex-col items-start" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-3xl"><i class="bi bi-mosque"></i></div>
+                        <h3 class="font-bold text-2xl">رواق القرآن</h3>
+                    </div>
+                    <p class="text-white/90 leading-relaxed mb-6 flex-grow">
+                        تحفيظ القرآن بالتجويد، السيرة النبوية، والآداب والأخلاق الفاضلة.
+                    </p>
+                    <a href="rawaqa.html" class="mt-auto inline-block py-2 px-6 rounded-full border-2 border-white text-white hover:bg-white hover:text-toot-green font-bold transition-all">
+                        تفاصيل الرواق
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="sports" class="py-20 bg-toot-text text-white relative overflow-hidden rounded-t-[4rem]">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="section-title text-toot-blue mx-auto">أكاديمية توت غنن الرياضية</div>
+                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
+                    العقل السليم في الجسم السليم: برامج رياضية احترافية تحت إشراف مدربين متخصصين.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="group text-center" data-aos="fade-up">
+                    <div class="w-28 h-28 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-red-500 group-hover:bg-red-600 transition duration-300 shadow-lg">
+                        🥊
+                    </div>
+                    <h4 class="font-bold text-xl">كيك بوكسينج</h4>
+                </div>
+
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-28 h-28 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-toot-blue group-hover:bg-toot-darkblue transition duration-300 shadow-lg">
+                        🥋
+                    </div>
+                    <h4 class="font-bold text-xl">كاراتيه</h4>
+                </div>
+
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-28 h-28 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-pink-500 group-hover:bg-pink-600 transition duration-300 shadow-lg">
+                        🤸
+                    </div>
+                    <h4 class="font-bold text-xl">جمباز</h4>
+                </div>
+
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-28 h-28 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-toot-green group-hover:bg-toot-darkgreen transition duration-300 shadow-lg">
+                        ⚽
+                    </div>
+                    <h4 class="font-bold text-xl">كرة قدم</h4>
+                </div>
+
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-28 h-28 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-toot-blue group-hover:bg-toot-darkblue transition duration-300 shadow-lg">
+                        🏊‍♂️
+                    </div>
+                    <h4 class="font-bold text-xl">سباحة</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="team" class="py-20 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="section-title mx-auto">فريقنا المتميز</div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    نفتخر بوجود نخبة من أفضل المدربين والمعلمين المؤهلين لتقديم أفضل تجربة تعليمية ورياضية لأبنائكم.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="glass-card p-6 rounded-4xl text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="trainer-img-container">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&q=80&auto=format&fit=crop" alt="Trainer" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800">ميس سارة</h4>
+                    <span class="block text-sm text-toot-green font-bold mb-2">مشرفة رياض الأطفال</span>
+                    <p class="text-xs text-gray-500">خبرة 10 سنوات في تربية الطفولة المبكرة وتنمية المهارات.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-4xl text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="trainer-img-container">
+                        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&q=80&auto=format&fit=crop" alt="Trainer" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800">كابتن علي</h4>
+                    <span class="block text-sm text-red-500 font-bold mb-2">مدرب كيك بوكسينج</span>
+                    <p class="text-xs text-gray-500">بطل جمهورية سابق، متخصص في تدريب اللياقة والدفاع عن النفس.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-4xl text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="trainer-img-container">
+                        <img src="ansary.jpg" alt="Trainer" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800">م. أنصاري محمود</h4>
+                    <span class="block text-sm text-toot-blue font-bold mb-2">مدربة برمجة & ICT</span>
+                    <p class="text-xs text-gray-500">مهندس برمجيات شغوفة بتعليم التكنولوجيا للأطفال بطرق مبسطة خبرة 5 سنوات في تدريب الروبوتيكس شارك في العديد من المسابقات المحلية و الدولية في مجال الروبوتيكس , Full stack development .</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-4xl text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="trainer-img-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop" alt="Trainer" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800">الشيخ أحمد</h4>
+                    <span class="block text-sm text-toot-brown font-bold mb-2">مشرف رواق القرآن</span>
+                    <p class="text-xs text-gray-500">مجاز في القراءات، يتبع أسلوباً محبباً للأطفال في التحفيظ.</p>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+    <footer id="contact" class="bg-gray-900 text-white pt-20 pb-10 rounded-t-[3rem] mt-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="logo.png" alt="Toot Ghannan" class="w-14 h-auto bg-white rounded-full p-1">
+                        <span class="text-2xl font-black text-white tracking-tight">توت غنن</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        نصنع مستقبل طفلك اليوم. الأكاديمية الرائدة في مجال التعليم وتنمية المهارات والتكنولوجيا في صعيد مصر.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-toot-blue flex items-center justify-center transition"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-pink-500 flex items-center justify-center transition"><i class="bi bi-instagram"></i></a>
+                        <a href="https://wa.me/201010676035" class="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center transition"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-xl font-bold mb-6 text-toot-green">روابط هامة</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#about" class="hover:text-toot-blue transition flex items-center gap-2"><i class="bi bi-chevron-left text-xs"></i> عن الأكاديمية</a></li>
+                        <li><a href="#kindergarten" class="hover:text-toot-blue transition flex items-center gap-2"><i class="bi bi-chevron-left text-xs"></i> رياض الأطفال</a></li>
+                        <li><a href="#activities" class="hover:text-toot-blue transition flex items-center gap-2"><i class="bi bi-chevron-left text-xs"></i> الكورسات والأنشطة</a></li>
+                        <li><a href="#sports" class="hover:text-toot-blue transition flex items-center gap-2"><i class="bi bi-chevron-left text-xs"></i> الأنشطة الرياضية</a></li>
+                        <li><a href="register.html" class="text-toot-blue font-bold transition flex items-center gap-2"><i class="bi bi-pencil-square text-xs"></i> سجل الآن</a></li>
+                    </ul>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-xl font-bold mb-6 text-toot-blue">تواصل معنا</h4>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-geo-alt-fill text-toot-green mt-1"></i>
+                            <span>نجع حمادي - محافظة قنا<br><span class="text-sm text-gray-500">بجوار [علامة مميزة إن وجد]</span></span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="bi bi-telephone-fill text-toot-green"></i>
+                            <a href="tel:01145471067" class="hover:text-white transition dir-ltr">011 4547 1067</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="bi bi-whatsapp text-toot-green"></i>
+                            <a href="https://wa.me/201010676035" class="hover:text-white transition dir-ltr">010 1067 6035</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="bg-white/5 p-6 rounded-3xl border border-white/10 text-center">
+                    <h4 class="font-bold text-lg mb-4">جاهز للانضمام؟</h4>
+                    <p class="text-sm text-gray-400 mb-6">الأماكن محدودة للكورسات الصيفية والعام الدراسي الجديد.</p>
+                    <a href="register.html" class="block w-full py-3 bg-gradient-to-r from-toot-green to-toot-blue rounded-xl font-bold hover:shadow-lg hover:shadow-toot-green/20 transition transform hover:-translate-y-1">
+                        احجز مقعدك الآن 🚀
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
+                    جميع الحقوق محفوظة © 2025 أكاديمية توت غنن. <br class="md:hidden">
+                    <span class="hidden md:inline"> | </span> 
+                    تم التطوير بحب ❤️
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1200, 
+            easing: 'ease-out-cubic', 
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) { 
+                navbar.classList.add('shadow-xl', 'bg-white/95');
+                navbar.classList.remove('bg-white/80');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-white/95');
+                navbar.classList.add('bg-white/80');
+                }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1200, 
+            easing: 'ease-out-cubic', 
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) { 
+                navbar.classList.add('shadow-xl', 'bg-white/95');
+                navbar.classList.remove('bg-white/80');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-white/95');
+                navbar.classList.add('bg-white/80');
+            }
+        });
+
+        // --- أضف هذا الكود الجديد هنا ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker Registered'))
+                .catch(err => console.log('Service Worker Error:', err));
+            });
+        }
+    </script>
+</body>
+</html>
