@@ -1,11 +1,20 @@
 {
-  "name": "tootghannan academy",
+  "name": "tootghannan",
   "short_name": "tootghannan",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F5F5F5",
   "theme_color": "#8BC34A",
   "orientation": "portrait",
+  "scope": "/",
+  "scope_extensions": [
+    {
+      "origin": "https://student.tootghannan.site"
+    },
+    {
+      "origin": "https://admin.tootghannan.site"
+    }
+  ],
   "icons": [
     {
       "src": "logo.png",
